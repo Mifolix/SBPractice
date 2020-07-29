@@ -1,4 +1,4 @@
-package task3;
+package Date_27_07_2020;
 
 public class task3 {
     public static  void main(String[] args){

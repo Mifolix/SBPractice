@@ -1,6 +1,4 @@
-package task11;
-
-import java.util.Scanner;
+package Date_27_07_2020;
 
 public class task11 {
     public static void main(String args[]) {

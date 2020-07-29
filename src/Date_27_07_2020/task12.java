@@ -1,4 +1,4 @@
-package task12;
+package Date_27_07_2020;
 
 import java.util.Scanner;
 
