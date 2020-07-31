@@ -3,37 +3,46 @@ package Date_30_07_2020;
 import java.util.Scanner;
 
 public class List {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EntryException {
         Scanner in = new Scanner(System.in);
         LList ll = new LList();
-        int nu=0;
-        while(nu!=5) {
-            System.out.println("Выберите действие: \nДобавить элемент = 1 \nВывод элемента = 2 \nВывод всех элементов = 3 \nВывод количества позиций = 4 \nВыход = 5");
+        int nu = 0;
+        while (nu != 5) {
+            System.out.println("Выберите действие: " +
+                    "\n1 - Добавить элемент списка" +
+                    "\n2 - Вывод элемента списка" +
+                    "\n3 - Вывод всех элементов списка" +
+                    "\n4 - Вывод количества позиций в списке" +
+                    "\n5 - Выход");
             nu = in.nextInt();
             switch (nu) {
                 case 1:
-                    System.out.println("Введите элемент:");
+                    System.out.println("Введите элемент списка:");
                     String element = in.next();
                     ll.add(element);
                     break;
                 case 2:
-                    System.out.println("Выберите, какой элемент вывести");
+                    System.out.println("Выберите какой элемент списка вывести");
                     int Conclusion = in.nextInt();
+                    if (Conclusion <= 0) {
+                        throw new EntryException("Выход за границы списка");
+                    }
                     System.out.println(ll.get(Conclusion));
                     break;
                 case 3:
                     int Conclusions = ll.size();
-                    for (int i=1; i <= Conclusions; i++) {
+                    for (int i = 1; i <= Conclusions; i++) {
                         System.out.println(ll.get(i));
                     }
                     break;
                 case 4:
                     int cout = ll.size();
-                    System.out.println("Всего элементов = "+ cout);
+                    System.out.println("Всего элементов = " + cout);
                     break;
                 case 5:
                     break;
             }
+
         }
     }
 }
@@ -79,23 +88,14 @@ class LList {
 
     public Object get(int id) {
         try {
-            if (id <= 0 ) {
-                throw new IndexOutOfBoundsException();
-            }
             Node Value = root;
             for (int i = 0; i < id - 1; i++) {
                 Value = Value.next;
             }
             return Value.data;
-
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Выход за границы списка");
-            return " ";
-        } catch (NullPointerException e) {
-            System.out.println("Выход за границы списка");
-            return " ";
+        } catch (NullPointerException e){
+            return "Этого элемента не существует";
         }
-
     }
 
     private Node findLast() {
